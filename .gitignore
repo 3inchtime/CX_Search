@@ -1,0 +1,7 @@
+.idea/
+blog_spider/blog_spider/__pycache__/
+blog_spider/blog_spider/spiders/__pycache__/
+blog_spider/blog_spider/tools/__pycache__/
+cx_search/cx_search/__pycache__/
+cx_search/db.sqlite3
+
