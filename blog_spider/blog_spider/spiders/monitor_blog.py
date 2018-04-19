@@ -35,6 +35,4 @@ class MonitorBlogSpider(scrapy.Spider):
         title = response.css("{}".format(response.meta['article_title']))
         create_time = response.css("{}".format(response.meta['article_time']))
         content = response.css("{}".format(response.meta['next_button']))
-        print(title, create_time, content)
         pass
-
