@@ -9,6 +9,7 @@ import scrapy
 
 
 class BlogSpiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    article_url = scrapy.Field()
+    article_title = scrapy.Field()
+    article_time = scrapy.Field()
+    article_content = scrapy.Field()

@@ -7,6 +7,7 @@ from scrapy.http import Request
 
 
 from blog_spider.tools.config_reader import ConfigReader
+from blog_spider.items import BlogSpiderItem
 
 
 class MonitorBlogSpider(scrapy.Spider):
@@ -32,7 +33,17 @@ class MonitorBlogSpider(scrapy.Spider):
             yield Request(url=parse.urljoin(response.url, blog_url), dont_filter=True, callback=self.parse_blog, meta=meta)
 
     def parse_blog(self, response):
-        title = response.css("{}".format(response.meta['article_title']))
-        create_time = response.css("{}".format(response.meta['article_time']))
-        content = response.css("{}".format(response.meta['next_button']))
-        pass
+        article_item = BlogSpiderItem()
+
+        title = response.css("{}".format(response.meta['article_title'])).extract()[0]
+        create_time = response.css("{}".format(response.meta['article_time'])).extract()[0]
+        content = response.css("{}".format(response.meta['next_button'])).extract()[0]
+
+        print(title, create_time, content)
+
+        article_item['article_url'] = response.url
+        article_item['article_title'] = title
+        article_item['article_time'] = create_time
+        article_item['article_content'] = content
+
+        yield article_item

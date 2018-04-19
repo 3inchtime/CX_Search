@@ -69,9 +69,11 @@ MONITOR_LIST_PATH = os.path.join(BOOTSTRAP_DATA_PATH, 'monitor_host.yaml')
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'blog_spider.pipelines.BlogSpiderPipeline': 300,
-# }
+ITEM_PIPELINES = {
+    'blog_spider.pipelines.MysqlPipelines': 1,
+    # 'blog_spider.pipelines.MysqlTwistedPipeline': 1,
+    # 'blog_spider.pipelines.BlogSpiderPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -93,3 +95,7 @@ MONITOR_LIST_PATH = os.path.join(BOOTSTRAP_DATA_PATH, 'monitor_host.yaml')
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+MYSQL_HOST = "127.0.0.1"
+MYSQL_DBNAME = "blog_spider"
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "root"
