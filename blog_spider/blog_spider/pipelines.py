@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import codecs
-import json
-from twisted.enterprise import adbapi
 import MySQLdb
 import MySQLdb.cursors
 

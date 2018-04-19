@@ -35,9 +35,13 @@ class MonitorBlogSpider(scrapy.Spider):
     def parse_blog(self, response):
         article_item = BlogSpiderItem()
 
-        title = response.css("{}".format(response.meta['article_title'])).extract()[0]
-        create_time = response.css("{}".format(response.meta['article_time'])).extract()[0]
-        content = response.css("{}".format(response.meta['next_button'])).extract()[0]
+        article_title_xpath = response.meta['article_title']
+        article_time_xpath = response.meta['article_time']
+        next_button_xpath = response.meta['next_button']
+
+        title = response.css("{}".format(article_title_xpath)).extract()[0]
+        create_time = response.css("{}".format(article_time_xpath)).extract()[0]
+        content = response.css("{}".format(next_button_xpath)).extract()[0]
 
         print(title, create_time, content)
 
