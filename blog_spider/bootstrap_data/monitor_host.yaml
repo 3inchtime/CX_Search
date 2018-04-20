@@ -1,10 +1,8 @@
 http://blog.jobbole.com/all-posts/:
   article_url: "#archive .floated-thumb .post-thumb a::attr(href)"
   article_title: ".entry-header h1::text"
-  article_time: "p.entry-meta-hide-on-mobile::text"
   next_button: "div.entry"
 http://blog.51cto.com/artcommend:
   article_url: "qweqweqwsdf"
   article_title: "qwesdasdasdf"
-  article_time: "qwasdasdasdf"
   next_button: "qwasdas"

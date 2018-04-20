@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from urllib import parse
+import datetime
+import time
 
 
 import scrapy
@@ -21,7 +23,6 @@ class MonitorBlogSpider(scrapy.Spider):
             meta = {
                         'article_url': config[1],
                         'article_title': config[2],
-                        'article_time': config[3],
                         'next_button': config[4]
                     }
             yield Request(url=url, callback=self.parse, meta=meta)
@@ -33,21 +34,20 @@ class MonitorBlogSpider(scrapy.Spider):
             yield Request(url=parse.urljoin(response.url, blog_url), dont_filter=True, callback=self.parse_blog, meta=meta)
 
     def parse_blog(self, response):
+
         article_item = BlogSpiderItem()
 
         article_title_xpath = response.meta['article_title']
-        article_time_xpath = response.meta['article_time']
         next_button_xpath = response.meta['next_button']
 
         title = response.css("{}".format(article_title_xpath)).extract()[0]
-        create_time = response.css("{}".format(article_time_xpath)).extract()[0]
+        create_time = datetime.date.today().strftime("%Y-%m-%d")
         content = response.css("{}".format(next_button_xpath)).extract()[0]
-
-        print(title, create_time, content)
 
         article_item['article_url'] = response.url
         article_item['article_title'] = title
         article_item['article_time'] = create_time
         article_item['article_content'] = content
+        time.sleep(2)
 
         yield article_item

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import re
+
+
 import MySQLdb
 import MySQLdb.cursors
 
@@ -16,12 +19,16 @@ class MysqlPipelines(object):
 
     def process_item(self, item, spider):
 
+        relcontent = item["article_content"]
+        content = re.sub(r'</?\w+[^>]*>', '', relcontent).strip()
+        print(content)
+
         insert_sql = """
-                        INSERT INTO blog_detail(title,url,create_time,content) 
+                        INSERT INTO blog_detail(title,url,create_time,content)
                         VALUES (%s,%s,%s,%s);
                         """
 
-        self.cursor.execute(insert_sql, (item["article_title"], item["article_url"], item["article_time"], item["article_content"]))
+        self.cursor.execute(insert_sql, (item["article_title"], item["article_url"], item["article_time"], content))
         self.conn.commit()
 #
 # class MysqlTwistedPipeline(object):
@@ -55,4 +62,4 @@ class MysqlPipelines(object):
 #         insert_sql = """INSERT INTO blog_detail(title, url, create_time, content) VALUES (%s, %s, %s, %s);"""
 #         cursor.execute(insert_sql, (item["article_title"], item["article_url"], item["article_time"], item["article_content"]))
 
-#CREATE TABLE blog_detail(title VARCHAR(200) NOT NULL, url VARCHAR(200) NOT NULL, create_time VARCHAR(200), content LONGTEXT NOT NULL);
+# CREATE TABLE blog_detail(title VARCHAR(200) NOT NULL, url VARCHAR(200) NOT NULL, create_time DATETIME NOT NULL, content LONGTEXT NOT NULL)CHARACTER SET = utf8;
