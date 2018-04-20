@@ -70,9 +70,9 @@ MONITOR_LIST_PATH = os.path.join(BOOTSTRAP_DATA_PATH, 'monitor_host.yaml')
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'blog_spider.pipelines.MysqlPipelines': 2,
+    # 'blog_spider.pipelines.MysqlPipelines': 2,
     # 'blog_spider.pipelines.FilterDetail': 1,
-    # 'blog_spider.pipelines.MysqlTwistedPipeline': 1,
+    'blog_spider.pipelines.MysqlTwistedPipeline': 1,
     # 'blog_spider.pipelines.BlogSpiderPipeline': 300,
 }
 

@@ -23,7 +23,7 @@ class MonitorBlogSpider(scrapy.Spider):
             meta = {
                         'article_url': config[1],
                         'article_title': config[2],
-                        'next_button': config[4]
+                        'next_button': config[3]
                     }
             yield Request(url=url, callback=self.parse, meta=meta)
 
