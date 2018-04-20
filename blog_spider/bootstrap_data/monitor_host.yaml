@@ -1,8 +1,5 @@
 http://blog.jobbole.com/all-posts/:
-  article_url: "#archive .floated-thumb .post-thumb a::attr(href)"
-  article_title: ".entry-header h1::text"
-  next_button: "div.entry"
-http://blog.51cto.com/artcommend:
-  article_url: "qweqweqwsdf"
-  article_title: "qwesdasdasdf"
-  next_button: "qwasdas"
+  article_url: '//a[@class="archive-title"]/@href'
+  article_title: '//div[@class="entry-header"]/h1/text()'
+  article_content: '//div[@class="entry"]/*/text()'
+  next_button: '//a[@class="next page-numbers"]/@href'

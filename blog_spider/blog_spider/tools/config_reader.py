@@ -22,6 +22,7 @@ class ConfigReader(object):
                             key,
                             self.config[key]['article_url'],
                             self.config[key]['article_title'],
+                            self.config[key]['article_content'],
                             self.config[key]['next_button']
                           ]
             self.config_parse.append(key_words)
