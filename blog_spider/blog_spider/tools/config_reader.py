@@ -9,6 +9,7 @@ class ConfigReader(object):
     def __init__(self):
         self.config = {}
         self.config_parse = []
+        self.start_urls = []
         host_path = os.path.join(MONITOR_LIST_PATH)
 
         try:
@@ -25,4 +26,5 @@ class ConfigReader(object):
                             self.config[key]['article_content'],
                             self.config[key]['next_button']
                           ]
+            self.start_urls.append(key)
             self.config_parse.append(key_words)

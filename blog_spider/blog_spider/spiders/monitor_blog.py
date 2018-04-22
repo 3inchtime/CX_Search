@@ -31,8 +31,10 @@ class MonitorBlogSpider(scrapy.Spider):
     def parse(self, response):
         blog_urls = response.xpath("{}".format(response.meta['article_url'])).extract()
         meta = response.meta
+
         for blog_url in blog_urls:
             yield Request(url=parse.urljoin(response.url, blog_url), dont_filter=True, callback=self.parse_blog, meta=meta)
+
         next_url = response.xpath("{}".format(response.meta['next_button'])).extract()[0]
         if next_url:
             yield Request(url=parse.urljoin(response.url, next_url), dont_filter=True, callback=self.parse, meta=meta)
@@ -44,9 +46,12 @@ class MonitorBlogSpider(scrapy.Spider):
         article_title_xpath = response.meta['article_title']
         article_content_xpath = response.meta['article_content']
 
-        title = response.xpath("{}".format(article_title_xpath)).extract()[0]
-        create_time = datetime.date.today().strftime("%Y-%m-%d")
-        content = response.xpath("{}".format(article_content_xpath)).extract()
+        try:
+            title = response.xpath("{}".format(article_title_xpath)).extract()[0]
+            create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            content = response.xpath("{}".format(article_content_xpath)).extract()
+        except IndexError:
+            print("<<{}>>爬取失败".format(title))
 
         contents = ''
         for word in content:
