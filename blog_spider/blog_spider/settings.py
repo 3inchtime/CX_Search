@@ -57,9 +57,10 @@ MONITOR_LIST_PATH = os.path.join(BOOTSTRAP_DATA_PATH, 'monitor_host.yaml')
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#    'blog_spider.middlewares.BlogSpiderDownloaderMiddleware': 543,
-# }
+DOWNLOADER_MIDDLEWARES = {
+   # 'blog_spider.middlewares.BlogSpiderDownloaderMiddleware': 543,
+   #  'blog_spider.middlewares.JSPageMiddleware': 1,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html

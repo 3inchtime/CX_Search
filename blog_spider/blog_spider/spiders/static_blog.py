@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from urllib import parse
 import datetime
-import time
 
 
 import scrapy
@@ -14,7 +13,7 @@ from blog_spider.items import BlogSpiderItem
 
 class MonitorBlogSpider(scrapy.Spider):
 
-    name = 'monitor_blog'
+    name = 'static_blog'
 
     def start_requests(self):
         c = ConfigReader()
