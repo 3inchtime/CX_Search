@@ -6,7 +6,7 @@ http://blog.jobbole.com/all-posts/:
 http://blog.51cto.com/artcommend:
   article_url: '//li/a[@class="tit"]/@href'
   article_title: '//h1[@class="artical-title"]/text()'
-  article_content: '//div[@class="artical-content-bak main-content"]/*/p/text()'
+  article_content: '//div[@class="artical-content-bak main-content"]/*/p/text() | //div[@class="artical-content-bak main-content editor-side-new"]/*/p/text()'
   next_button: '//li[@class="next"]/a/@href'
 https://www.cnblogs.com/pick/:
   article_url: '//a[@class="titlelnk"]/@href'
