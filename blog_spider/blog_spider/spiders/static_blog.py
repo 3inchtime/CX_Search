@@ -50,7 +50,7 @@ class MonitorBlogSpider(scrapy.Spider):
             create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             content = response.xpath("{}".format(article_content_xpath)).extract()
         except IndexError:
-            print("<<{}>>爬取失败".format(title))
+            print("爬取失败")
 
         contents = ''
         for word in content:
