@@ -14,10 +14,11 @@
 #  article_content: '//div[@class="postBody"]/*/*/text()'
 #  next_button: '//div[@class="pager"]/a[last()]/@href'
 https://segmentfault.com/blogs/hottest/monthly?page=1:
-  article_url:
-  article_title:
-  article_content:
-  next_button:
+  article_url: '//div[@class="summary"]/h2/a/@href'
+  article_title: '//div[@class="post-topheader__info"]/h1/a/text()'
+  article_content: '//div[@class="article fmt article__content"]/*/text()'
+  next_button: '//a[@rel="next"]/@href'
 #https://www.oschina.net/blog:
 #https://blog.csdn.net/:
 #https://juejin.im/:
+#https://yq.aliyun.com/articles
