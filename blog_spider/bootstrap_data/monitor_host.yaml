@@ -8,16 +8,16 @@
 #  article_title: '//h1[@class="artical-title"]/text()'
 #  article_content: '//div[@class="artical-content-bak main-content"]/*/p/text() | //div[@class="artical-content-bak main-content editor-side-new"]/*/p/text()'
 #  next_button: '//li[@class="next"]/a/@href'
-#https://www.cnblogs.com/pick/:
-#  article_url: '//a[@class="titlelnk"]/@href'
-#  article_title: '//h1[@class="postTitle"]/a/text()'
-#  article_content: '//div[@class="postBody"]/*/*/text()'
-#  next_button: '//div[@class="pager"]/a[last()]/@href'
-https://segmentfault.com/blogs/hottest/monthly?page=1:
-  article_url: '//div[@class="summary"]/h2/a/@href'
-  article_title: '//div[@class="post-topheader__info"]/h1/a/text()'
-  article_content: '//div[@class="article fmt article__content"]/*/text()'
-  next_button: '//a[@rel="next"]/@href'
+https://www.cnblogs.com/pick/:
+  article_url: '//a[@class="titlelnk"]/@href'
+  article_title: '//h1[@class="postTitle"]/a/text()'
+  article_content: '//div[@class="postBody"]/*/*/text()'
+  next_button: '//div[@class="pager"]/a[last()]/@href'
+#https://segmentfault.com/blogs/hottest/monthly?page=1:
+#  article_url: '//div[@class="summary"]/h2/a/@href'
+#  article_title: '//div[@class="post-topheader__info"]/h1/a/text()'
+#  article_content: '//div[@class="article fmt article__content"]/*/text()'
+#  next_button: '//a[@rel="next"]/@href'
 #https://www.oschina.net/blog:
 #https://blog.csdn.net/:
 #https://juejin.im/:

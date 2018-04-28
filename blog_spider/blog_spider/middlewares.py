@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-
+import random
 
 from scrapy import signals
+from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
+from blog_spider.settings import USER_AGENT_LIST
 
 
 class BlogSpiderSpiderMiddleware(object):
@@ -49,3 +51,15 @@ class BlogSpiderDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class RandomUserAgentMiddleware(UserAgentMiddleware):
+
+    def __init__(self, user_agent=""):
+        self.user_agent = user_agent
+
+    def process_request(self, request, spider):
+        with open(USER_AGENT_LIST, 'r') as f:
+            user_agent_list = f.readlines()
+            agent = user_agent_list[random.randint(1, len(user_agent_list))][0:-1]
+            request.headers['User_Agent'] = agent

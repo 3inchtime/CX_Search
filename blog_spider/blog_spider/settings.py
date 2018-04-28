@@ -38,6 +38,7 @@ COOKIES_ENABLED = False
 
 BOOTSTRAP_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'bootstrap_data')
 MONITOR_LIST_PATH = os.path.join(BOOTSTRAP_DATA_PATH, 'monitor_host.yaml')
+USER_AGENT_LIST = os.path.join(BOOTSTRAP_DATA_PATH, 'user_agent_list.txt')
 
 
 # Disable Telnet Console (enabled by default)
@@ -60,6 +61,7 @@ MONITOR_LIST_PATH = os.path.join(BOOTSTRAP_DATA_PATH, 'monitor_host.yaml')
 DOWNLOADER_MIDDLEWARES = {
    # 'blog_spider.middlewares.BlogSpiderDownloaderMiddleware': 543,
    #  'blog_spider.middlewares.JSPageMiddleware': 1,
+    'blog_spider.middlewares.RandomUserAgentMiddleware': 1
 }
 
 # Enable or disable extensions
