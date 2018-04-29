@@ -21,14 +21,9 @@ class JSBlogSpider(scrapy.Spider):
 
     name = 'dynamic_blog'
 
-    def __init__(self):
-        self.browser = webdriver.Chrome(executable_path=ChromePath)
-        super(JSBlogSpider, self).__init__()
-        dispatcher.connect(self.spider_closed, signals.spider_closed)
-
-    def spider_closed(self, spider):
-        print("spider closed!")
-        self.browser.quit()
+    # def __init__(self):
+    #     self.browser = webdriver.Chrome(executable_path=ChromePath)
+    #     super(JSBlogSpider, self).__init__()
 
     def start_requests(self):
         c = ConfigReader()
@@ -46,6 +41,9 @@ class JSBlogSpider(scrapy.Spider):
                 pass
 
     def parse(self, response):
+        # for i in range(1000):
+        #     self.browser.execute_script(
+        #         "window.scrollTo(0, document.body.scrollHeight); var lenOfPage=document.body.scrollHeight; return lenOfPage;")
         blog_urls = response.xpath("{}".format(response.meta['article_url'])).extract()
         meta = response.meta
 
