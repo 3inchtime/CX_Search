@@ -34,9 +34,10 @@ class MonitorBlogSpider(scrapy.Spider):
         for blog_url in blog_urls:
             yield Request(url=parse.urljoin(response.url, blog_url), dont_filter=True, callback=self.parse_blog, meta=meta)
 
-        next_url = response.xpath("{}".format(response.meta['next_button'])).extract()[0]
-        if next_url:
-            yield Request(url=parse.urljoin(response.url, next_url), dont_filter=True, callback=self.parse, meta=meta)
+        if meta['next_button'] != 'null':
+            next_url = response.xpath("{}".format(response.meta['next_button'])).extract()[0]
+            if next_url:
+                yield Request(url=parse.urljoin(response.url, next_url), dont_filter=True, callback=self.parse, meta=meta)
 
     def parse_blog(self, response):
 

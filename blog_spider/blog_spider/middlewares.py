@@ -55,11 +55,11 @@ class BlogSpiderDownloaderMiddleware(object):
 
 class RandomUserAgentMiddleware(UserAgentMiddleware):
 
-    def __init__(self, user_agent=""):
+    def __init__(self, user_agent=''):
         self.user_agent = user_agent
 
     def process_request(self, request, spider):
         with open(USER_AGENT_LIST, 'r') as f:
             user_agent_list = f.readlines()
             agent = user_agent_list[random.randint(1, len(user_agent_list))][0:-1]
-            request.headers['User_Agent'] = agent
+            request.headers.setdefault('User_Agent', agent)
