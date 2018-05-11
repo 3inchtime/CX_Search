@@ -1,28 +1,37 @@
-#http://blog.jobbole.com/all-posts/:
-#  article_url: '//a[@class="archive-title"]/@href'
-#  article_title: '//div[@class="entry-header"]/h1/text()'
-#  article_content: '//div[@class="entry"]/*/text()'
-#  next_button: '//a[@class="next page-numbers"]/@href'
-#http://blog.51cto.com/artcommend:
-#  article_url: '//li/a[@class="tit"]/@href'
-#  article_title: '//h1[@class="artical-title"]/text()'
-#  article_content: '//div[@class="artical-content-bak main-content"]/*/p/text() | //div[@class="artical-content-bak main-content editor-side-new"]/*/p/text()'
-#  next_button: '//li[@class="next"]/a/@href'
-#https://www.cnblogs.com/pick/:
-#  article_url: '//a[@class="titlelnk"]/@href'
-#  article_title: '//h1[@class="postTitle"]/a/text()'
-#  article_content: '//div[@class="postBody"]/*/*/text()'
-#  next_button: '//div[@class="pager"]/a[last()]/@href'
-#https://segmentfault.com/blogs/hottest/monthly?page=1:
-#  article_url: '//div[@class="summary"]/h2/a/@href'
-#  article_title: '//div[@class="post-topheader__info"]/h1/a/text()'
-#  article_content: '//div[@class="article fmt article__content"]/*/text()'
-#  next_button: '//a[@rel="next"]/@href'
+http://blog.jobbole.com/all-posts/:
+  article_url: '//a[@class="archive-title"]/@href'
+  article_title: '//div[@class="entry-header"]/h1/text()'
+  article_content: '//div[@class="entry"]/*/text()'
+  next_button: '//a[@class="next page-numbers"]/@href'
+http://blog.51cto.com/artcommend:
+  article_url: '//li/a[@class="tit"]/@href'
+  article_title: '//h1[@class="artical-title"]/text()'
+  article_content: '//div[@class="artical-content-bak main-content"]/*/p/text() | //div[@class="artical-content-bak main-content editor-side-new"]/*/p/text()'
+  next_button: '//li[@class="next"]/a/@href'
+https://www.cnblogs.com/pick/:
+  article_url: '//a[@class="titlelnk"]/@href'
+  article_title: '//h1[@class="postTitle"]/a/text()'
+  article_content: '//div[@class="postBody"]/*/*/text()'
+  next_button: '//div[@class="pager"]/a[last()]/@href'
+https://segmentfault.com/blogs/hottest/monthly?page=1:
+  article_url: '//div[@class="summary"]/h2/a/@href'
+  article_title: '//div[@class="post-topheader__info"]/h1/a/text()'
+  article_content: '//div[@class="article fmt article__content"]/*/text()'
+  next_button: '//a[@rel="next"]/@href'
 https://www.oschina.net/blog:
   article_url: '//header[@class="box vertical blog-title-box"]/a/@href'
   article_title: '//div[@class="title"]/text()'
   article_content: '//div[@class="BlogContent clearfix"]/*/text()'
   next_button: 'null'
-#https://blog.csdn.net/:
 #https://juejin.im/:
-#https://yq.aliyun.com/articles
+#  article_url: ''
+#  article_title: ''
+#  article_content: ''
+#  next_button: 'null'
+#https://yq.aliyun.com/articles:
+#  article_url: '//div[@class="item-box normal-item"]/a/@href'
+#  article_title: ''
+#  article_content: ''
+#  next_button: 'null'
+#https://blog.csdn.net/:
+
