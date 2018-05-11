@@ -23,15 +23,15 @@ https://www.oschina.net/blog:
   article_title: '//div[@class="title"]/text()'
   article_content: '//div[@class="BlogContent clearfix"]/*/text()'
   next_button: 'null'
-#https://juejin.im/:
-#  article_url: ''
-#  article_title: ''
-#  article_content: ''
-#  next_button: 'null'
-#https://yq.aliyun.com/articles:
-#  article_url: '//div[@class="item-box normal-item"]/a/@href'
-#  article_title: ''
-#  article_content: ''
-#  next_button: 'null'
-#https://blog.csdn.net/:
+https://juejin.im/:
+  article_url: ''
+  article_title: ''
+  article_content: ''
+  next_button: 'null'
+https://yq.aliyun.com/articles:
+  article_url: '//div[@class="item-box normal-item"]/a/@href'
+  article_title: ''
+  article_content: ''
+  next_button: 'null'
+https://blog.csdn.net/:
 

@@ -6,31 +6,15 @@ import re
 import MySQLdb
 import MySQLdb.cursors
 from twisted.enterprise import adbapi
+from w3lib.html import remove_tags
+
+
+from blog_spider.tools.es_types import BlogType
 
 
 class BlogSpiderPipeline(object):
     def process_item(self, item, spider):
         return item
-
-
-# class MysqlPipelines(object):
-#     def __init__(self):
-#         self.conn = MySQLdb.connect('127.0.0.1', 'root', 'root', 'blog_spider', charset="utf8", use_unicode=True)
-#         self.cursor = self.conn.cursor()
-#
-#     def process_item(self, item, spider):
-#
-#         relcontent = item["article_content"]
-#         content = re.sub(r'</?\w+[^>]*>', '', relcontent).strip()
-#         print(content)
-#
-#         insert_sql = """
-#                         INSERT INTO blog_detail(title,url,create_time,content)
-#                         VALUES (%s,%s,%s,%s);
-#                         """
-#
-#         self.cursor.execute(insert_sql, (item["article_title"], item["article_url"], item["article_time"], content))
-#         self.conn.commit()
 
 
 class MysqlTwistedPipeline(object):
@@ -70,5 +54,18 @@ class MysqlTwistedPipeline(object):
                         VALUES (%s,%s,%s,%s);
                         """
         cursor.execute(insert_sql, (item["article_title"], item["article_url"], item["article_time"], content))
-
 # CREATE TABLE blog_detail(title VARCHAR(200) NOT NULL, url VARCHAR(200) NOT NULL, create_time DATETIME NOT NULL, content LONGTEXT NOT NULL)CHARACTER SET = utf8;
+
+
+class ElasticsearchPipeline(object):
+
+    def process_item(self, item, spider):
+        blog = BlogType()
+        blog.title = item['article_title']
+        blog.time = item['article_time']
+        blog.content = remove_tags(item['article_content'])
+        blog.url = item['article_url']
+
+        blog.save()
+
+        return item
