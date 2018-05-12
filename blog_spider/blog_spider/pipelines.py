@@ -7,6 +7,7 @@ import MySQLdb
 import MySQLdb.cursors
 from twisted.enterprise import adbapi
 from w3lib.html import remove_tags
+from elasticsearch_dsl.connections import connections
 
 
 from blog_spider.tools.es_types import BlogType
@@ -57,15 +58,37 @@ class MysqlTwistedPipeline(object):
 # CREATE TABLE blog_detail(title VARCHAR(200) NOT NULL, url VARCHAR(200) NOT NULL, create_time DATETIME NOT NULL, content LONGTEXT NOT NULL)CHARACTER SET = utf8;
 
 
+es = connections.create_connection(BlogType._doc_type.using)
+
+
+def gen_suggests(index, text, weight):
+    used_words = set()
+    suggests = []
+    if text:
+        words = es.indices.analyze(index=index, analyzer="ik_max_word", params={'filter': ["lowercase"]}, body=text)
+        anylyzed_words = set([r["token"] for r in words["tokens"] if len(r["token"]) > 1])
+        new_words = anylyzed_words - used_words
+    else:
+        new_words = set()
+
+    if new_words:
+        suggests.append({"input": list(new_words), "weight": weight})
+
+    return suggests
+
+
 class ElasticsearchPipeline(object):
 
     def process_item(self, item, spider):
-        blog = BlogType()
-        blog.title = item['article_title']
-        blog.time = item['article_time']
-        blog.content = remove_tags(item['article_content'])
-        blog.url = item['article_url']
 
-        blog.save()
+        article = BlogType()
+        article.title = item['article_title']
+        article.time = item['article_time']
+        article.content = remove_tags(item['article_content'])
+        article.url = item['article_url']
+
+        # article.suggest = gen_suggests(index=BlogType._doc_type.index, text=article.title, weight=10)
+
+        article.save()
 
         return item
