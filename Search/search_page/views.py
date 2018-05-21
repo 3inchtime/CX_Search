@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 
 from django.shortcuts import render
@@ -34,6 +35,12 @@ class SearchSuggest(View):
 class SearchView(View):
     def get(self, request):
         key_words = request.GET.get("q", "")
+        page = request.GET.get("p", "1")
+        try:
+            page = int(page)
+        except:
+            page = 1
+        start_time = datetime.now()
         response = client.search(
             index="static_blog",
             body={
@@ -43,7 +50,7 @@ class SearchView(View):
                         "fields": ["title", "content"]
                     }
                 },
-                "from": 0,
+                "from": (page-1)*10,
                 "size": 10,
                 "highlight": {
                     "pre_tags": ['<span class="keyWord">'],
@@ -55,8 +62,13 @@ class SearchView(View):
                 }
             }
         )
-
+        end_time = datetime.now()
+        last_seconds = (start_time - end_time).total_seconds()
         total_nums = response["hits"]["total"]
+        if (page % 10) > 0:
+            page_nums = int(total_nums/10) + 1
+        else:
+            page_nums = int(total_nums/10)
         hit_list = []
 
         for hit in response["hits"]["hits"]:
@@ -77,4 +89,10 @@ class SearchView(View):
 
             hit_list.append(hit_dict)
 
-        return render(request, "result.html", {"all_hits": hit_list, "key_words": key_words})
+        return render(request, "result.html", {"page": page,
+                                               "all_hits": hit_list,
+                                               "key_words": key_words,
+                                               "total_nums": total_nums,
+                                               "page_nums": page_nums,
+                                               "last_seconds": last_seconds
+                                               })
