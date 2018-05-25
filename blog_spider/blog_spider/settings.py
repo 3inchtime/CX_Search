@@ -94,3 +94,5 @@ MYSQL_HOST = "127.0.0.1"
 MYSQL_DBNAME = "blog_spider"
 MYSQL_USER = "root"
 MYSQL_PASSWORD = "root"
+
+FEED_EXPORT_ENCODING = 'utf-8'
