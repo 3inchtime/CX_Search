@@ -38,3 +38,18 @@ https://www.artima.com/articles:
   article_title: '//span[@class="ts"]/text()'
   article_content: '//div[@class="vegies"]/p/text()'
   next_button: '//div[@class="paginator"][1]/a[@class="nextprev"]/@href'
+https://blog.csdn.net/nav/newarticles:
+  article_url: '//div[@class="title"]/h2/a/@href'
+  article_title: '//h6[@class="title-article"]/text()'
+  article_content: '//div[@class="markdown_views"]/ol/li/p/text() | //div[@class="htmledit_views"]/p/text() | //div[@class="markdown_views"]/p/text()'
+  next_button: 'null'
+https://blog.csdn.net/nav/ai:
+  article_url: '//div[@class="title"]/h2/a/@href'
+  article_title: '//h6[@class="title-article"]/text()'
+  article_content: '//div[@class="markdown_views"]/ol/li/p/text() | //div[@class="htmledit_views"]/p/text() | //div[@class="markdown_views"]/p/text()'
+  next_button: 'null'
+http://www.infoq.com/cn/articles:
+  article_url: '//h2/a/@href'
+  article_title: '//div[@class="title_canvas"]/h1/text()'
+  article_content: '//div[@class="text_info text_info_article"]/p/text()'
+  next_button: '//a[@class="blue"]/@href'
